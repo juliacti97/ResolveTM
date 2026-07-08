@@ -1,0 +1,36 @@
+/* Fontes Google carregadas via @import.
+   Em produção, para melhor performance, considere usar next/font/google. */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+/* Tailwind CSS v4: uma única linha importa base + utilitários. */
+@import "tailwindcss";
+
+/* Tema da marca ResolveTM (Tailwind v4 usa CSS, não mais o tailwind.config.ts).
+   Cada token --color-* vira uma família de classes: bg-<nome>, text-<nome>, border-<nome>...
+   Ex.: --color-navy  ->  bg-navy, text-navy, border-navy */
+@theme {
+  --color-navy: #1B2B5E;         /* azul navy — cor principal */
+  --color-navy-claro: #EBF0FF;   /* navy claro — fundos suaves */
+  --color-laranja: #F97316;      /* laranja — destaque / CTA / selos */
+  --color-cinza: #1F2937;        /* cinza escuro — texto */
+  --color-branco: #ffffff;       /* branco — fundo */
+}
+
+/* Fontes mapeadas como utilitários do Tailwind.
+   font-montserrat aplica Montserrat nos títulos.
+   font-inter aplica Inter no texto corrido. */
+@theme inline {
+  --font-montserrat: 'Montserrat', system-ui, sans-serif;
+  --font-inter: 'Inter', system-ui, sans-serif;
+}
+
+/* Rolagem suave ao clicar nos links de âncora do menu. */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Compensa o cabeçalho fixo: ao rolar até uma seção pela âncora,
+   deixa um respiro no topo para o conteúdo não ficar escondido. */
+section {
+  scroll-margin-top: 80px;
+}
