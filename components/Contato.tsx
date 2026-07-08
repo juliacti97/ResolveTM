@@ -3,14 +3,16 @@
 // hooks do React (useState, useEffect etc.) — indica que roda no navegador, não no servidor.
 
 // Seção "Contato": formulário controlado pelo React com useState.
-// Ao enviar, manda os dados para a nossa API (/api/contato) com fetch
-// e mostra uma mensagem de sucesso ou de erro conforme a resposta.
+// Ao enviar, manda os dados para a nossa API pública da web3forms
+// que se encarrega de repassar a mensagem por e-mail para nós.
+
+import { useState, SubmitEvent } from "react";
 
 // useState: gerencia o valor de cada campo e o estado de envio
 // FormEvent: tipo TypeScript para o evento de submit do formulário
-import { useState, SubmitEvent } from "react";
 
-//API pública
+
+// Chave pública da web3forms — não é secreta, é feita para ficar no front-end.
 const WEB3FORMS_KEY = "28aab77e-efa6-45e0-8c67-a3ba7043e477";
 
 export default function Contato() {
@@ -42,20 +44,29 @@ export default function Contato() {
     setEnviando(true);
 
     try {
-      // Envia os dados para a NOSSA API (arquivo app/api/contato/route.ts).
-      // method "POST" + body em JSON: é assim que mandamos dados para um endpoint.
-      const resposta = await fetch("/api/contato", {
+      // Envia os dados direto para a API pública da web3forms.
+      // access_key identifica o formulário; os demais campos são os dados enviados.
+      const resposta = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome, email, mensagem }),
-      });
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          name: nome,
+          email: email,
+          message: mensagem,
+          subject: "Nova mensagem de contato — ResolveTM",
+          }),
+        });
 
-      // Lê a resposta da API, que também vem em JSON.
+      // A web3forms devolve um json com { success: true/false, message: "..." }
       const dados = await resposta.json();
 
       // resposta.ok é false para status de erro (400, 500...). Aí lançamos o erro.
-      if (!resposta.ok) {
-        throw new Error(dados.erro ?? "Não foi possível enviar agora.");
+      if (!resposta.ok || !dados.success) {
+        throw new Error(dados.message ?? "Não foi possível enviar agora.");
       }
 
       // Deu certo: mostra a mensagem de sucesso e limpa os campos.
