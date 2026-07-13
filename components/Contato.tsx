@@ -13,7 +13,7 @@ import { useState, SubmitEvent } from "react";
 
 
 // Chave pública da web3forms — não é secreta, é feita para ficar no front-end.
-const WEB3FORMS_KEY = "28aab77e-efa6-45e0-8c67-a3ba7043e477";
+const WEB3FORMS_KEY = "d6c242d5-a60f-4445-ba72-0b55586e141c";
 
 export default function Contato() {
 
