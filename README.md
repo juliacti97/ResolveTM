@@ -22,18 +22,6 @@ Projeto educacional desenvolvido para a disciplina de Front-end da Setrem.
 
 Fonte dos títulos: **Montserrat** | Fonte do texto: **Inter**
 
-## Como rodar
-
-```bash
-# Instale as dependências
-npm install
-
-# Inicie o servidor de desenvolvimento
-npm run dev
-```
-
-Acesse [http://localhost:3000](http://localhost:3000) no navegador.
-
 ## Estrutura de pastas
 
 ```
@@ -71,7 +59,3 @@ public/
 | Benefícios   | `#beneficios`    | 4 diferenciais da plataforma                |
 | Cobertura    | `#cobertura`     | Verificação de CEP via ViaCEP               |
 | Contato      | `#contato`       | Formulário de mensagem                      |
-
-## Imagens
-
-As imagens em `public/imagens/` são **placeholders**. Substitua-as por fotos reais das categorias de serviço antes de publicar. Formatos recomendados: `.jpg` ou `.webp`.
