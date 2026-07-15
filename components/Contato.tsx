@@ -12,7 +12,7 @@ import { useState, SubmitEvent } from "react";
 // FormEvent: tipo TypeScript para o evento de submit do formulário
 
 
-// Chave pública da web3forms — não é secreta, é feita para ficar no front-end.
+// Chave pública da web3forms
 const WEB3FORMS_KEY = "d6c242d5-a60f-4445-ba72-0b55586e141c";
 
 export default function Contato() {
